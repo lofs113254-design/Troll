@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Eu sei o seu segredo</title>
+<style>
+  body {
+    background: black;
+    color: lime;
+    font-family: monospace;
+    text-align: center;
+    overflow: hidden;
+  }
+  #screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+  }
+  .glitch {
+    animation: glitch 0.2s infinite;
+  }
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, -5px); }
+    80% { transform: translate(5px, 5px); }
+    100% { transform: translate(0); }
+  }
+</style>
+</head>
+<body>
+<div id="screen">!!! ALERTA DE VÍRUS !!!</div>
+
+<script>
+let count = 0;
+function troll() {
+    count++;
+    // Pisca a tela e muda cores
+    document.body.style.background = count % 2 === 0 ? 'red' : 'black';
+    document.body.style.color = count % 2 === 0 ? 'yellow' : 'lime';
+    document.getElementById('screen').classList.toggle('glitch');
+
+    // Toca um beep
+    let audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+    audio.play();
+
+    if(count < 10) {
+        setTimeout(troll, 500); // repete a cada 0,5s
+    } else {
+        document.getElementById('screen').innerText = "Era só pra zoar rlx kkk";
+        document.body.style.background = 'black';
+        document.body.style.color = 'lime';
+    }
+}
+
+troll();
+</script>
+</body>
+</html>
+
